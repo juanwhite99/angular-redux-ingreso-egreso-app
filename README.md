@@ -26,4 +26,6 @@ npx ng g c ingreso-egreso/detalle --skipTests
 npx ng g c shared/footer --skipTests
 npx ng g c shared/navbar --skipTests
 npx ng g c shared/sidebar --skipTests
+
+npm i bootstrap --save
 ```

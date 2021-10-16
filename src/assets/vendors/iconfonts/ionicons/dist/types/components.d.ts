@@ -115,20 +115,4 @@ declare global {
     'ion-icon': Components.IonIconAttributes;
   }
 
-
-  interface HTMLIonIconElement extends Components.IonIcon, HTMLStencilElement {}
-  var HTMLIonIconElement: {
-    prototype: HTMLIonIconElement;
-    new (): HTMLIonIconElement;
-  };
-
-  interface HTMLElementTagNameMap {
-    'ion-icon': HTMLIonIconElement
-  }
-
-  interface ElementTagNameMap {
-    'ion-icon': HTMLIonIconElement;
-  }
-
-
 }

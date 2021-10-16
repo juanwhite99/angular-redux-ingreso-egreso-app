@@ -1,3 +1,4 @@
+import { JSX } from 'ionicons/dist/types/stencil-public-runtime';
 import '../stencil.core';
 export declare class Icon {
     private io?;
