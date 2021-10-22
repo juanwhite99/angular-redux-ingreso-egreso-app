@@ -28,4 +28,8 @@ npx ng g c shared/navbar --skipTests
 npx ng g c shared/sidebar --skipTests
 
 npm i bootstrap --save
+
+npx ng g s services/auth
+npx ng g guard services/auth
+
 ```
