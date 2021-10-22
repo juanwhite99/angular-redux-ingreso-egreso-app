@@ -1,4 +1,6 @@
 # IngresoEgresoApp
+https://juanwhite99.github.io/angular-redux-ingreso-egreso-app/
+
 
 Original template took from:
 * https://github.com/BootstrapDash/StarAdmin-Free-Bootstrap-Admin-Template
@@ -32,4 +34,11 @@ npm i bootstrap --save
 npx ng g s services/auth
 npx ng g guard services/auth
 
+```
+
+Git Tags
+
+```
+git tag -a v1.0.0 -m "Template listo"
+git push --tags
 ```
