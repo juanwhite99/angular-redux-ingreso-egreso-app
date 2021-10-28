@@ -58,3 +58,11 @@ AngularFire
 ```
 ng add @angular/fire
 ```
+
+Install dotenv and yargs
+
+https://betterprogramming.pub/how-to-secure-angular-environment-variables-for-use-in-github-actions-39c07587d590
+
+```
+npm i -D yargs dotenv
+```
