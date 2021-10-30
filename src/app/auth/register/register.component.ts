@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -31,21 +31,35 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.formRegister = this.fb.group({
-      nombre: ['Juan', Validators.required],
-      correo: ['juan.pablo.lb99@gmail.com', [Validators.required, Validators.email]],
-      password: ['12345678', Validators.required],
+      nombre: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
   }
 
   register() {
     if (this.formRegister.invalid) return;
+
+    Swal.fire({
+      title: 'Loading...',
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     const { nombre, correo, password } = this.formRegister.value;
     this.authService.crearUsuario(nombre, correo, password)
       .then(credentials => {
-        console.log(credentials);
+        Swal.close();
         this.router.navigate(['/']);
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.message
+        })
+      })
       ;
   }
 

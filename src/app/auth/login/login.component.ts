@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,20 +27,34 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      correo: ['juan.pablo.lb99@gmail.com', [Validators.required, Validators.email]],
-      password: ['12345678', [Validators.required]],
+      correo: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
 
   login() {
     if (this.loginForm.invalid) return;
+
+    Swal.fire({
+      title: 'Loading...',
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     const { correo, password } = this.loginForm.value;
     this.authService.login(correo, password)
       .then(credentials => {
-        console.log(credentials);
+        Swal.close();
         this.router.navigate(['/']);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.message
+        })
+      });
   }
 
 }

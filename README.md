@@ -66,3 +66,11 @@ https://betterprogramming.pub/how-to-secure-angular-environment-variables-for-us
 ```
 npm i -D yargs dotenv
 ```
+
+Sweet alert for notifications
+
+- https://sweetalert2.github.io/
+
+```
+npm install sweetalert2
+```
