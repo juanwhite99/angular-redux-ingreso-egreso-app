@@ -2,7 +2,7 @@
 
 environment.prod.ts
 environment.ts
-.env.dev
+dev.env
 
 # compiled output
 /dist
