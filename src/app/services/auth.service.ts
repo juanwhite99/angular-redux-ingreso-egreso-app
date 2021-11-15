@@ -15,16 +15,16 @@ export class AuthService {
   ) { }
 
   initAuthListener() {
-    this.auth.authState.subscribe(fuser => {
-      console.log(fuser);
+    this.auth.authState.subscribe((user) => {
+      console.log(user);
     })
   }
 
   crearUsuario(nombre: string, email: string, password: string) {
     return this.auth.createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
-        const newUser = new Usuario({ uid: user?.uid, nombre: 'Juan Pablo', email: 'juan.pablo.lb99@gmail.com' });
-        console.log(newUser);
+        const newUser = new Usuario({ uid: user?.uid, nombre, email });
+
         if (user) {
           return this.firestore.doc(`${user.uid}/usuario`).set({ ...newUser });
         }
