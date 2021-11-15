@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
 
     const { nombre, correo, password } = this.formRegister.value;
     this.authService.crearUsuario(nombre, correo, password)
-      .then(credentials => {
+      .then(() => {
         Swal.close();
         this.router.navigate(['/']);
       })
@@ -62,5 +62,4 @@ export class RegisterComponent implements OnInit {
       })
       ;
   }
-
 }
