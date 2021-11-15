@@ -54,6 +54,13 @@ git tag -a v1.1.0 -m "Section 7 finished"
 git push --tags
 ```
 
+Chapter 93
+
+```
+git tag -a v1.2.0 -m "Section 8 finished"
+git push --tags
+```
+
 AngularFire
 
 - https://github.com/angular/angularfire
