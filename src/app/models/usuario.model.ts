@@ -1,9 +1,10 @@
 export class Usuario {
   uid!: string | undefined | null;
-  nombre!: string;
-  email!: string;
+  nombre!: string | undefined | null;
+  email!: string | undefined | null;
 
-  constructor(args: Usuario) {
+  constructor(args?: Usuario) {
     Object.assign(this, args);
   }
+
 }
