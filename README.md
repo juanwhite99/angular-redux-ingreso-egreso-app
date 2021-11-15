@@ -47,6 +47,13 @@ git tag -a v1.0.0 -m "Template listo"
 git push --tags
 ```
 
+Chapter 82
+
+```
+git tag -a v1.1.0 -m "Section 7 finished"
+git push --tags
+```
+
 AngularFire
 
 - https://github.com/angular/angularfire
