@@ -81,3 +81,12 @@ Sweet alert for notifications
 ```
 npm install sweetalert2
 ```
+
+Install NGRX Store
+https://ngrx.io/guide/store/install
+https://ngrx.io/guide/store-devtools/install
+
+```
+ng add @ngrx/store@latest
+ng add @ngrx/store-devtools@latest
+```
