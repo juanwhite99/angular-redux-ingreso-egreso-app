@@ -74,12 +74,11 @@ export class RegisterComponent implements OnInit {
       })
       .catch(err => {
         this.store.dispatch(ui.stopLoading());
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Oops...',
-        //   text: err.message
-        // })
-      })
-      ;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.message
+        })
+      });
   }
 }
