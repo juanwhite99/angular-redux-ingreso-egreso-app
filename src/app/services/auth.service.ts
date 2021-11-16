@@ -15,6 +15,12 @@ import { unSetUser } from '../auth/auth.actions';
 export class AuthService {
   ngDestoyed$ = new Subject();
 
+  private _user!: Usuario | undefined;
+
+  get user() {
+    return this._user;
+  }
+
   constructor(
     public auth: AngularFireAuth,
     private firestore: AngularFirestore,
@@ -27,11 +33,13 @@ export class AuthService {
         this.firestore.doc<Usuario>(`${user.uid}/usuario`).valueChanges()
           .pipe(takeUntil(this.ngDestoyed$))
           .subscribe(fuser => {
-            const { uid, nombre, email } = fuser || {};
-            fuser && this.store.dispatch(authActions.setUser({ user: { uid, nombre, email } }))
+            // const { uid, nombre, email } = fuser || {};
+            this._user = fuser;
+            this._user && this.store.dispatch(authActions.setUser({ user: this._user }))
           });
       }
       else {
+        this._user = undefined;
         this.ngDestoyed$.next();
         this.store.dispatch(unSetUser());
       }
