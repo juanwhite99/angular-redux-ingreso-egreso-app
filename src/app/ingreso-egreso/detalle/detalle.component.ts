@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { AppState } from '../../app.reducer';
 import { IngresoEgreso } from '../../models/ingreso-egreso.model';
 import { takeUntil } from 'rxjs/operators';
+import { IngresoEgresoService } from '../../services/ingreso-egreso.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalle',
@@ -15,7 +17,8 @@ export class DetalleComponent implements OnInit, OnDestroy {
   ingresosEgresos: Array<IngresoEgreso> = [];
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private ingresoEgresoService: IngresoEgresoService
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +32,20 @@ export class DetalleComponent implements OnInit, OnDestroy {
   }
 
   deleteItem(uid: string | null | undefined) {
-    console.log(uid);
+    if (uid) {
+      this.ingresoEgresoService.deleteIngresoEgresoItem(uid)
+        .then(() => {
+          Swal.fire('Deleted Successfully', 'Item deleted', 'success')
+        });
+    }
+    else {
+      Swal.fire(
+        'Something went wrong',
+        'Something went wrong, please refresh the page and try again',
+        'error'
+      );
+    }
+
   }
 
 }

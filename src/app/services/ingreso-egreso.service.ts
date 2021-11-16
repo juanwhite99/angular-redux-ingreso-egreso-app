@@ -29,4 +29,9 @@ export class IngresoEgresoService {
         })))
       );
   }
+
+  deleteIngresoEgresoItem(uidItem: string) {
+    const { uid } = this.authService.user || {};
+    return this.fireStore.doc(`${uid}/ingresos-egresos/items/${uidItem}`).delete();
+  }
 }
