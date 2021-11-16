@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
-import { of, PartialObserver, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { Usuario } from '../models/usuario.model';
 import { AppState } from '../app.reducer';
 import * as authActions from '../auth/auth.actions';
-import { unSetUser } from '../auth/auth.actions';
+import * as ieActions from '../ingreso-egreso/ingreso-egreso.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,8 @@ export class AuthService {
       else {
         this._user = undefined;
         this.ngDestoyed$.next();
-        this.store.dispatch(unSetUser());
+        this.store.dispatch(authActions.unSetUser());
+        this.store.dispatch(ieActions.unSetItems());
       }
     });
   }

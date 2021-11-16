@@ -45,16 +45,19 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
     this.store.dispatch(ui.isLoading());
     const { description, amount, ingresoEgresoType } = this.ingresoForm.value;
     const ingresoEgreso = new IngresoEgreso({ description, amount, ingresoEgresoType });
-    this.ingresoEgresoService.createIngresoEgreso(ingresoEgreso)
-      .then(() => {
-        this.ingresoForm.reset();
-        this.store.dispatch(ui.stopLoading());
-        Swal.fire('Register Saved Successfully', description, 'success');
-      },
-        err => {
-          this.store.dispatch(ui.stopLoading());
-          Swal.fire('Something went wrong', err.message, 'error');
-        });
+    try {
+      this.ingresoEgresoService.createIngresoEgreso(ingresoEgreso)
+        .then(
+          () => {
+            this.ingresoForm.reset();
+            this.store.dispatch(ui.stopLoading());
+            Swal.fire('Register Saved Successfully', description, 'success');
+          }
+        );
+    } catch (err: any) {
+      this.store.dispatch(ui.stopLoading());
+      Swal.fire('Something went wrong', err.message, 'error');
+    }
   }
 
 }

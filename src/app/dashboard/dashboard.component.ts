@@ -4,7 +4,9 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { AppState } from '../app.reducer';
 import { IngresoEgresoService } from '../services/ingreso-egreso.service';
-import { filter, takeUntil } from 'rxjs/operators';
+import { filter, take, takeUntil } from 'rxjs/operators';
+import { IngresoEgreso } from '../models/ingreso-egreso.model';
+import * as ieActions from '../ingreso-egreso/ingreso-egreso.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,13 +26,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
       takeUntil(this.ngDestoyed$),
       filter(u => Boolean(u.user))
     ).subscribe(({ user }) => {
-      console.log(user);
-      user?.uid && this.ingresoEgreso.getIngresoEgresosListener(user.uid);
+      user?.uid && this.getIngresosEgresosFromFirebase(user.uid);
     });
   }
 
   ngOnDestroy(): void {
     this.ngDestoyed$.next();
+  }
+
+  private getIngresosEgresosFromFirebase(uid: string) {
+    this.ingresoEgreso.getIngresoEgresosListener(uid)
+      .pipe(takeUntil(this.ngDestoyed$))
+      .subscribe(ie => {
+        console.log(ie);
+        this.store.dispatch(ieActions.setItems({ items: ie }))
+      });
   }
 
 }
