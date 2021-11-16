@@ -1,0 +1,17 @@
+.form-group-radio {
+  display: flex;
+}
+
+.form-control-radio {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-control-radio span {
+  padding: 0.5rem;
+}
+
+.error {
+  color: #ff0000;
+}
