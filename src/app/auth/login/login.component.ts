@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      correo: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      correo: ['juan.pablo.lb99@gmail.com', [Validators.required, Validators.email]],
+      password: ['123456', [Validators.required]],
     });
 
     this.store.select('ui')
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.ngDestoyed$.next();
+    this.store.dispatch(ui.stopLoading());
   }
 
   login() {
