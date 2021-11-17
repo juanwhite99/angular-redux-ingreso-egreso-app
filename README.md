@@ -39,6 +39,8 @@ npx ng g s services/auth
 npx ng g guard services/auth
 npx ng g s services/ingresoEgreso
 
+npx ng g p pipes/ordenIngreso
+
 ```
 
 Git Tags
