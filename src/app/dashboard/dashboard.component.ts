@@ -38,7 +38,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.ingresoEgreso.getIngresoEgresosListener(uid)
       .pipe(takeUntil(this.ngDestoyed$))
       .subscribe(ie => {
-        console.log(ie);
         this.store.dispatch(ieActions.setItems({ items: ie }))
       });
   }
