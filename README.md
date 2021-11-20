@@ -100,3 +100,11 @@ https://ngrx.io/guide/store-devtools/install
 ng add @ngrx/store@latest
 ng add @ngrx/store-devtools@latest
 ```
+
+Install ng2-charts
+https://valor-software.com/ng2-charts/
+
+```
+npm install --save ng2-charts@^3.0.0-rc.7
+npm install --save chart.js@^3.6.0
+```

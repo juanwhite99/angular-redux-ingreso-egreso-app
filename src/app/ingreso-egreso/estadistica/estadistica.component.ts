@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { AppState } from '../../app.reducer';
 import { takeUntil } from 'rxjs/operators';
 import { IngresoEgreso } from 'src/app/models/ingreso-egreso.model';
+import { ChartData, ChartDataset, ChartType } from 'chart.js';
+// import { NgChartsConfiguration } from 'ng2-charts';
 
 @Component({
   selector: 'app-estadistica',
@@ -15,6 +17,15 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
   egresos: number = 0;
   totalIngresos: number = 0;
   totalEgresos: number = 0;
+
+  // Doughnut
+  public doughnutChartType: ChartType = 'doughnut';
+  public doughnutChartLabels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public doughnutChartData?: ChartDataset[] = [
+    { data: [350, 450, 100] },
+    { data: [50, 150, 120] },
+    { data: [250, 130, 70] }
+  ];
 
   ngDestoyed$ = new Subject();
 
@@ -44,4 +55,14 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  // events
+  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
 }

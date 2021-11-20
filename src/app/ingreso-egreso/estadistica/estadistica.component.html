@@ -78,7 +78,10 @@
       <div class="card-body">
         <h1 class="card-title">Gráfica</h1>
 
-        <!-- grÃ¡fica ira aquÃ­ -->
+        <div style="display: block">
+          <canvas baseChart [datasets]="doughnutChartData" [labels]="doughnutChartLabels" [type]="doughnutChartType">
+          </canvas>
+        </div>
 
       </div>
     </div>

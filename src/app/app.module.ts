@@ -3,10 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { environment } from 'src/environments/environment';
 
-// Angular Fire
+// Third Party
+// --Angular Fire
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
+// --Charts
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +52,7 @@ import { OrdenIngresoPipe } from './pipes/orden-ingreso.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    NgChartsModule,
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
