@@ -4,8 +4,8 @@ import { Subject } from 'rxjs';
 import { AppState } from '../../app.reducer';
 import { takeUntil } from 'rxjs/operators';
 import { IngresoEgreso } from 'src/app/models/ingreso-egreso.model';
-import { ChartData, ChartDataset, ChartType } from 'chart.js';
-// import { NgChartsConfiguration } from 'ng2-charts';
+import { ChartDataset } from 'chart.js';
+
 
 @Component({
   selector: 'app-estadistica',
@@ -19,13 +19,8 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
   totalEgresos: number = 0;
 
   // Doughnut
-  public doughnutChartType: ChartType = 'doughnut';
-  public doughnutChartLabels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData?: ChartDataset[] = [
-    { data: [350, 450, 100] },
-    { data: [50, 150, 120] },
-    { data: [250, 130, 70] }
-  ];
+  doughnutChartLabels = ['Ingreso', 'Egreso'];
+  doughnutChartData?: ChartDataset[] = [];
 
   ngDestoyed$ = new Subject();
 
@@ -44,6 +39,7 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
 
   generarEstadistica(items: Array<IngresoEgreso>) {
     if (!items.length) { return; }
+    this.resetValues();
     items.forEach(item => {
       if (item.ingresoEgresoType === 'ingreso') {
         this.totalIngresos += item.amount ?? 0;
@@ -54,6 +50,17 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
         this.egresos++;
       }
     });
+
+    this.doughnutChartData = [
+      { data: [this.totalIngresos, this.totalEgresos] },
+    ]
+  }
+
+  resetValues() {
+    this.ingresos = 0;
+    this.egresos = 0;
+    this.totalIngresos = 0;
+    this.totalEgresos = 0;
   }
 
   // events
