@@ -41,6 +41,8 @@ npx ng g s services/ingresoEgreso
 
 npx ng g p pipes/ordenIngreso
 
+npx ng g m auth/auth --route auth --flat -m app
+
 ```
 
 Git Tags

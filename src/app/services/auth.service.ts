@@ -33,7 +33,6 @@ export class AuthService {
         this.firestore.doc<Usuario>(`${user.uid}/usuario`).valueChanges()
           .pipe(takeUntil(this.ngDestoyed$))
           .subscribe(fuser => {
-            // const { uid, nombre, email } = fuser || {};
             this._user = fuser;
             this._user && this.store.dispatch(authActions.setUser({ user: this._user }))
           });
