@@ -43,7 +43,9 @@ npx ng g p pipes/ordenIngreso
 
 npx ng g m auth/auth --route auth --flat -m app
 npx ng g m shared/shared --route shared --flat -m app
+npx ng g m ingreso-egreso/ingreso-egreso --flat
 
+npx ng g m dashboard/dashboard --flat
 ```
 
 Git Tags
