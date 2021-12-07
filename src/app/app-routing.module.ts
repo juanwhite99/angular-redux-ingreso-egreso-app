@@ -6,13 +6,15 @@ import { dashboardRoutes } from './dashboard/dashboard.routes';
 
 const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'shared', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) },
   {
     path: 'home',
     component: DashboardComponent,
     children: dashboardRoutes,
     canActivate: [AuthGuard]
   },
-  { path: '', redirectTo: '/auth', pathMatch: 'full' }
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+
 ];
 
 @NgModule({
