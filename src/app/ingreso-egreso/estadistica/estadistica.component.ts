@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { AppState } from '../../app.reducer';
 import { takeUntil } from 'rxjs/operators';
 import { IngresoEgreso } from 'src/app/models/ingreso-egreso.model';
 import { ChartDataset } from 'chart.js';
+import { AppStateWithIngreso } from '../ingreso-egreso.reducer';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
   ngDestoyed$ = new Subject();
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppStateWithIngreso>
   ) { }
 
   ngOnInit(): void {

@@ -13,6 +13,8 @@ import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { DashboardRoutesModule } from '../dashboard/dashboard-routes.module';
+import { StoreModule } from '@ngrx/store';
+import { ingresoEgresoReducer } from './ingreso-egreso.reducer';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { DashboardRoutesModule } from '../dashboard/dashboard-routes.module';
     NgChartsModule,
     SharedModule,
     RouterModule,
-    DashboardRoutesModule
+    DashboardRoutesModule,
+    StoreModule.forFeature('ingresosEgresos', ingresoEgresoReducer)
   ],
   exports: [
 
